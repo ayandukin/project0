@@ -6,12 +6,15 @@ namespace Armory.App
 {
     class Program
     {
+        static Locations city = new Locations();
+        static Orders orders = new Orders();
+        static Customers customer = new Customers();
+
+        private static string _location;
         static void Main(string[] args)
         {
 
-            Locations city = new Locations();
-            Orders orders = new Orders();
-            Customers customer = new Customers();
+            
 
 
             Console.WriteLine("Welcome to Arlington Armory \nPlease make your selection");
@@ -27,27 +30,21 @@ namespace Armory.App
                         break;
 
                     case "2":
-                        PlaceOrder();
+                        location = city.SelectLocation();
                         break;
                 }
 
                 break;
             }
 
-            
-            orders.PlaceOrder();
-            
-
-
-
-
-           
 
         }
 
-        private static void PlaceOrder()
+        private static void PlaceOrder(string town, string gun, int num)
         {
-            throw new NotImplementedException();
+            city.MakePurchase(town, gun, num);
         }
+
+        
     }
 }

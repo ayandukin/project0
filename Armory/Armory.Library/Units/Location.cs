@@ -32,9 +32,15 @@ namespace Armory.Library
             }
         }
 
-        public void Purchase(string gun, int num)
+        
+        public bool Purchase(string gun, int num)
         {
-            inventory[gun] -= num;
+            if(inventory[gun] >= num)
+            {
+                inventory[gun] -= num;
+                return true;
+            }
+            return false;
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace Armory.Library
 {
@@ -16,7 +17,52 @@ namespace Armory.Library
             city.Add(new Location { Name = "Dallas" });
         }
         
-        
+        public bool MakePurchase(string town, string gun, int num)
+        {
+            var temp = city.First(x => x.Name.Equals(town));
+            return temp.Purchase(gun, num)? true : false;
+        }
+
+
+
+        public void SelectLocation()
+        {
+            string loc;
+            Console.WriteLine("Select city");
+            Console.WriteLine("1: Arlingon");
+            Console.WriteLine("2: Fort Worth");
+            Console.WriteLine("3: Dallas");
+            while (true)
+            {
+                string input = Console.ReadLine();
+                switch (input)
+                {
+                    case "1":
+                        loc = city[0].Name;
+                        break;
+                    case "2":
+                        loc = city[1].Name;
+                        break;
+                    case "3":
+                        loc = city[2].Name;
+                        break;
+                    
+
+                }
+
+                break;
+            }
+        }
+
+
+
+
+
+
+
+
+
+
 
         public void CheckInventory()
         {
