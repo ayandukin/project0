@@ -8,7 +8,6 @@ namespace Armory.Library
     public class Locations
     {
         private readonly List<Location> city = new List<Location>();
-        //public List<Location> GetLocations() => city;
 
         public Locations()
         {
@@ -55,7 +54,29 @@ namespace Armory.Library
         }
 
 
+        public Dictionary<string, int> SelectItems(string town)
+        {
+            Console.WriteLine("The following items are available");
+            var temp = city.First(x => x.Name.Equals(town));
+            {
+                temp.ListInventory();
+            }
+            string item;
+            int num;
+            Dictionary<string, int> purchase = new Dictionary<string, int>();
+            Console.WriteLine("Type name of item");
+            item = Console.ReadLine();
+            Console.WriteLine("Type the number of items you wish to purchase");
+            num = int.Parse(Console.ReadLine());
 
+            if (temp.Purchase(item, num))
+            {
+                Console.WriteLine("Added to cart");
+                purchase.Add(item, num);
+            }
+            return purchase;
+            
+        }
 
 
 

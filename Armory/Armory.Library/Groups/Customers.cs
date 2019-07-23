@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Armory.Library
@@ -19,7 +20,27 @@ namespace Armory.Library
         public void AddCustomer(string first, string last)
         {
             customer.Add(new Customer { FirstName = first, LastName = last});
+            Console.WriteLine($"{first} {last} added");
         }
         
+        public void CkeckCustomer()
+        {
+            string first, last;
+            Console.WriteLine("Please enter your first name");
+            first = Console.ReadLine();
+            Console.WriteLine("Please enter your last name");
+            last = Console.ReadLine();
+
+            if(customer.Any(x => x.FirstName.Equals(first) && x.LastName.Equals(last)))
+            {
+                var cust = customer.First(x => x.FirstName.Equals(first) && x.LastName.Equals(last));
+                Console.WriteLine($"Welcome back {first} {last}");
+            }
+            else
+            {
+                AddCustomer(first, last);
+            }
+
+        }
     }
 }
