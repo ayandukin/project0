@@ -30,7 +30,8 @@ namespace Armory.App
                         break;
 
                     case "2":
-                        location = city.SelectLocation();
+                        _location = city.SelectLocation();
+
                         break;
                 }
 

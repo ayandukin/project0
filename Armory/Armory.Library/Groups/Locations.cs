@@ -25,9 +25,9 @@ namespace Armory.Library
 
 
 
-        public void SelectLocation()
+        public string SelectLocation()
         {
-            string loc;
+            string loc="";
             Console.WriteLine("Select city");
             Console.WriteLine("1: Arlingon");
             Console.WriteLine("2: Fort Worth");
@@ -46,12 +46,12 @@ namespace Armory.Library
                     case "3":
                         loc = city[2].Name;
                         break;
-                    
 
                 }
 
                 break;
             }
+            return loc;
         }
 
 
