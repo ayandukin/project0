@@ -12,6 +12,7 @@ namespace Armory.App
         static Dictionary<string, int> purchase = new Dictionary<string, int>();
 
         private static string _location;
+        private static Customer user;
         static void Main(string[] args)
         {
 
@@ -34,7 +35,9 @@ namespace Armory.App
                     case "2":
                         _location = city.SelectLocation();
                         purchase=city.SelectItems(_location);
-                        customer.CkeckCustomer();
+                        user=customer.CkeckCustomer();
+                        order.PlaceOrder(_location, user, purchase);
+
                         break;
 
                     case "3":

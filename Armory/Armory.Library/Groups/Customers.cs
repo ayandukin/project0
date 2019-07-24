@@ -17,13 +17,14 @@ namespace Armory.Library
             customer.Add(new Customer { FirstName = "Lara", LastName = "Freeman" });
         }
 
-        public void AddCustomer(string first, string last)
+        public Customer AddCustomer(string first, string last)
         {
             customer.Add(new Customer { FirstName = first, LastName = last});
             Console.WriteLine($"{first} {last} added");
+            return customer.First(x => x.FirstName.Equals(first) && x.LastName.Equals(last));
         }
         
-        public void CkeckCustomer()
+        public Customer CkeckCustomer()
         {
             string first, last;
             Console.WriteLine("Please enter your first name");
@@ -35,10 +36,11 @@ namespace Armory.Library
             {
                 var cust = customer.First(x => x.FirstName.Equals(first) && x.LastName.Equals(last));
                 Console.WriteLine($"Welcome back {first} {last}");
+                return cust;
             }
             else
             {
-                AddCustomer(first, last);
+                return AddCustomer(first, last);
             }
 
         }
