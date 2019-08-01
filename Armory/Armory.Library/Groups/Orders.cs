@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Linq;
 
 namespace Armory.Library
 {
@@ -17,13 +16,9 @@ namespace Armory.Library
         {
             orders.Add(new Order(orderNumber ,location, user, order));
             
-
-
             orderNumber++;
 
         }
-
-        
     }
      
 

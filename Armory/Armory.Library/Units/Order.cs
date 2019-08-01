@@ -9,8 +9,7 @@ namespace Armory.Library
         private readonly int orderNumber;
         private readonly string firstName, lastName, location;
         private readonly Dictionary<string, int> purchases;
-        private readonly List<Invoice> invoices = new List<Invoice>();
-
+        
 
         public int Number { get => orderNumber; }
 
@@ -21,17 +20,8 @@ namespace Armory.Library
             firstName = user.FirstName;
             lastName = user.LastName;
             purchases = order;
-            CreateInvoices();
         }
 
-        public void CreateInvoices()
-        {
-            foreach (KeyValuePair<string, int> x in purchases)
-            {
-
-                invoices.Add(new Invoice(orderNumber, x));
-            }
-        }
         
 
 
