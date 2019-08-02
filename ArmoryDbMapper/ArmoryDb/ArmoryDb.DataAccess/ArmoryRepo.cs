@@ -88,33 +88,17 @@ namespace ArmoryDb.DataAccess
                 AddCustomer(first, last);
             Orders order = new Orders { Location = location, Customer = GetCustomerID(first, last), Price = 0 };
             _dbContext.Add(order);
-            _dbContext.SaveChanges();
-            decimal total = 0;
             foreach(var x in purchase)
             {
                 ReduceInventory(location, x.Key, x.Value);
-                total += CreateInvoice(order.OrderId, x.Key, x.Value);
+                Item it = _dbContext.Item.Find(x.Key);
+                order.Invoice.Add(new Invoice { Item = x.Key, Quantity = x.Value, Price = (it.Price * x.Value) });
             }
-            order.Price = total;
+            foreach (var x in order.Invoice)
+                order.Price += x.Price;
             _dbContext.SaveChanges();
             return order;
         }
-        /// <summary>
-        /// Called only by Purchase method, so is set to private; creates invoices for each individual item type in order
-        /// </summary>
-        /// <param name="orderNumber">order number that called it</param>
-        /// <param name="item">purchased item</param>
-        /// <param name="number">quantity</param>
-        /// <returns>total price of the purchased item * quantity</returns>
-        private static decimal CreateInvoice(int orderNumber, string item, int number)
-        {
-            Item it = _dbContext.Item.First(x => x.Name == item);
-            Invoice invoice = new Invoice {OrderId = orderNumber, Item = item, Quantity = number, Price = (it.Price * number) };
-            _dbContext.Add(invoice);
-            _dbContext.SaveChanges();
-            return invoice.Price;
-        }
-
         /// <summary>
         /// Called only by Purchase method, so is set to private; reduces inventory after items have been purchased
         /// </summary>
